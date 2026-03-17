@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Неоновые языки программирования</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0b1a2e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Неоновый контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Заголовок с неоновым эффектом */
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #00f3ff;
+            text-shadow: 
+                0 0 10px #00f3ff,
+                0 0 20px #00f3ff,
+                0 0 40px #00f3ff,
+                0 0 80px #00a6ff;
+            animation: neonPulse 1.5s ease-in-out infinite alternate;
+            position: relative;
+        }
+
+        /* Желтая обводка для заголовка */
+        h1::after {
+            content: 'популярные языки програмирования';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px #ffff00;
+            text-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes neonPulse {
+            from {
+                text-shadow: 
+                    0 0 10px #00f3ff,
+                    0 0 20px #00f3ff,
+                    0 0 40px #00f3ff;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #00f3ff,
+                    0 0 40px #00f3ff,
+                    0 0 80px #00f3ff,
+                    0 0 120px #0044ff;
+            }
+        }
+
+        /* Сетка карточек */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Карточка языка с неоновым эффектом */
+        .language-card {
+            background: rgba(10, 20, 40, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid #00f3ff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 
+                0 0 20px rgba(0, 243, 255, 0.3),
+                inset 0 0 20px rgba(0, 243, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Желтая обводка при наведении */
+        .language-card:hover {
+            border-color: #ffff00;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 0, 0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        /* Внутренняя подсветка */
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00f3ff, #ffff00, #00f3ff);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .language-card:hover::before {
+            opacity: 0.3;
+        }
+
+        /* Контейнер для иконки */
+        .icon-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border: 2px solid #00f3ff;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover .icon-container {
+            border-color: #ffff00;
+            box-shadow: 0 0 30px rgba(255, 255, 0, 0.5);
+        }
+
+        /* Иконки языков */
+        .icon-container svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px #00f3ff);
+        }
+
+        .language-card:hover .icon-container svg {
+            filter: drop-shadow(0 0 10px #ffff00);
+        }
+
+        /* Название языка */
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #00f3ff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover h2 {
+            color: #ffff00;
+            text-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+        }
+
+        /* Описание языка */
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover .description {
+            border-top-color: rgba(255, 255, 0, 0.5);
+            color: #fff;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Неоновые линии по краям */
+        .neon-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00f3ff, #ffff00, #00f3ff, transparent);
+            box-shadow: 0 0 20px #00f3ff;
+            z-index: 1000;
+        }
+
+        .neon-border.bottom {
+            top: auto;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные неоновые линии -->
+    <div class="neon-border"></div>
+    <div class="neon-border bottom"></div>
+
+    <div class="container">
+        <h1>популярные языки програмирования</h1>
+        
+        <div class="languages-grid">
+            <!-- Python -->
+            <div class="language-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5c0 .28-.22.5-.5.5h-3c-.28 0-.5-.22-.5-.5v-9c0-.28.22-.5.5-.5h3c.28 0 .5.22.5.5v9zm6 0c0 .28-.22.5-.5.5h-3c-.28 0-.5-.22-.5-.5v-9c0-.28.22-.5.5-.5h3c.28 0 .5.22.5.5v9z" fill="#00f3ff"/>
+                    </svg>
+                </div>
+                <h2>Python</h2>
+                <div class="description">
+                    <strong>Python</strong> — это высокоуровневый язык программирования общего назначения, который делает акцент на производительности разработчика и читаемости кода. Он поддерживает несколько парадигм программирования, включая структурное, объектно-ориентированное и функциональное программирование.
+                    <br><br>
+                    Python широко используется в различных областях: от веб-разработки (Django, Flask) до научных вычислений (NumPy, SciPy), анализа данных (Pandas), машинного обучения (TensorFlow, PyTorch) и автоматизации. Его популярность обусловлена простым синтаксисом, огромной экосистемой библиотек и активным сообществом.
+                    <br><br>
+                    Особенности: динамическая типизация, автоматическое управление памятью, интерпретируемость, обширная стандартная библиотека.
+                </div>
+            </div>
+
+            <!-- Java -->
+            <div class="language-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#00f3ff" stroke-width="2"/>
+                        <path d="M8 8 L16 16 M16 8 L8 16" stroke="#00f3ff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h2>Java</h2>
+                <div class="description">
+                    <strong>Java</strong> — это объектно-ориентированный язык программирования, разработанный компанией Sun Microsystems (ныне Oracle). Главный принцип Java — "Write Once, Run Anywhere" (WORA), что означает возможность запуска скомпилированного кода на любой платформе, поддерживающей Java Virtual Machine (JVM).
+                    <br><br>
+                    Java является одним из самых популярных языков для корпоративной разработки, создания Android-приложений, веб-сервисов и крупных распределенных систем. Он известен своей надежностью, производительностью и масштабируемостью.
+                    <br><br>
+                    Ключевые особенности: строгая типизация, автоматическое управление памятью (сборка мусора), многопоточность, обширная стандартная библиотека (Java API), безопасность и переносимость.
+                </div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="language-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 3H21V21H3V3Z" stroke="#00f3ff" stroke-width="2"/>
+                        <path d="M9 12L12 15L15 12" stroke="#00f3ff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h2>JavaScript</h2>
+                <div class="description">
+                    <strong>JavaScript</strong> — это мультипарадигменный язык программирования, который изначально создавался для добавления интерактивности на веб-страницы. Сегодня это один из самых распространенных языков, работающий не только в браузере, но и на сервере (Node.js), в мобильных и десктопных приложениях.
+                    <br><br>
+                    JavaScript является основой современного веба вместе с HTML и CSS. Он поддерживает событийно-ориентированное, функциональное и императивное программирование. Благодаря огромному количеству фреймворков и библиотек (React, Vue, Angular, Express) JavaScript используется для создания практически любых типов приложений.
+                    <br><br>
+                    Особенности: интерпретируемость, динамическая типизация, прототипное наследование, асинхронность, первая-класс функции, поддержка JSON.
+                </div>
+            </div>
+
+            <!-- C++ -->
+            <div class="language-card">
+                <div class="icon-container">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4L20 12L4 20V4Z" stroke="#00f3ff" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="3" stroke="#00f3ff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h2>C++</h2>
+                <div class="description">
+                    <strong>C++</strong> — это компилируемый, статически типизированный язык программирования общего назначения, разработанный Бьёрном Страуструпом как расширение языка C. Он поддерживает множество парадигм программирования: процедурное, объектно-ориентированное, обобщенное и функциональное программирование.
+                    <br><br>
+                    C++ широко используется в системном программировании, разработке игр (Unreal Engine), высокопроизводительных вычислениях, создании операционных систем, браузеров, баз данных и встроенных систем. Язык позволяет программисту управлять памятью на низком уровне, что обеспечивает высокую производительность.
+                    <br><br>
+                    Ключевые особенности: ручное управление памятью, множественное наследование, шаблоны (templates), перегрузка операторов, RAII (Resource Acquisition Is Initialization), исключительная производительность и контроль над аппаратным обеспечением.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
